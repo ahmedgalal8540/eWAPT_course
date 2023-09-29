@@ -10,7 +10,8 @@
     <title>Simple reflected XSS</title>
 </head>
 <body>
-<form method="get">
+<h1 style="display:flex; justify-content: center; align-items: center;">This is simple reflected XSS</h1>
+<form method="get"style="display:flex; justify-content: center; align-items: center;">
         <input type="text" name="name" id="">
         <input type="submit" value="Submit">
     </form>
