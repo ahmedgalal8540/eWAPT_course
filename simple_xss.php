@@ -1,3 +1,4 @@
+// To run this code put it on linux at /var/www/html/
 <?php if(isset($_GET["name"])){
     echo '<pre>This is xss : "' . $_GET["name"] .'</pre>';
 }
