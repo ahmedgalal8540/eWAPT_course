@@ -61,7 +61,7 @@ if (!empty($savedInputs)) {
     echo "<h2>Saved Inputs:</h2>";
     echo "<ul>";
     foreach ($savedInputs as $savedInput) {
-        echo "<li>" . htmlspecialchars($savedInput) . "</li>";
+        echo "<li>" . $savedInput . "</li>";
     }
     echo "</ul>";
 }
