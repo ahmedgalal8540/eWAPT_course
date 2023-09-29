@@ -1,4 +1,5 @@
 <?php
+// To get the best results follow the following : 
 // Very important note : 
 // create a user to access the database (I don't recommand root because of compatible error)
 // So we will go through some steps : 
