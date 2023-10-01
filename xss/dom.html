@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple DOM XSS</title>
+</head>
+
+<body>
+    <h1 id="welcome"></h1>
+    <script>
+        var w = "Welcome ";
+        var name = document.location.hash.substr(
+            document.location.hash.search(/#w!/i) + 3,
+            document.location.hash.length
+        );
+        document.getElementById('welcome').innerHTML = w + name;
+    </script>
+</body>
+
+</html>
